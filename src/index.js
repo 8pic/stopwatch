@@ -8,10 +8,5 @@ import App from './app';
 
 
 
-// const tick = ()=>{
-  createRoot(document.getElementById("root")).render(<App/>)
-// }
 
-// setInterval(()=>{
-//   tick()
-// }, 1000)
+  createRoot(document.getElementById("root")).render(<App/>);
