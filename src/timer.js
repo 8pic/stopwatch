@@ -1,7 +1,7 @@
 import React from 'react';
 import TimeInput from './TimeInput';
 var interval;
-
+var isInvertal = true;
 class Timer extends React.Component{
     constructor(){
       super();
@@ -11,33 +11,34 @@ class Timer extends React.Component{
         hour : 0
       }
     }
-    componentDidUpdate(){
-        if (this.state.time === 0){
-            clearInterval(interval)
-        }
-    }
     startTime = ()=>{
-      interval = setInterval(()=>{
-        this.setState({
-          second : this.state.second + 1
-        })
-        if (this.state.second >= 59){
+      if (isInvertal){
+        interval = setInterval(()=>{
           this.setState({
-            second : 0,
-            minute : this.state.minute + 1
+            second : this.state.second + 1
           })
-        }
-        if (this.state.minute >= 59){
-          this.setState({
-            minute : 0,
-            hour : this.state.hour + 1
-          })
-        }
-      } , 1000) ;
+          if (this.state.second >= 59 ){
+            this.setState({
+              second : 0,
+              minute : this.state.minute + 1
+            })
+          }
+          if (this.state.minute >= 59){
+            this.setState({
+              minute : 0,
+              hour : this.state.hour + 1
+            })
+          }
+        } , 1000) ;
+        isInvertal = false
+      }
       
     }
     stopTime = ()=>{
-      clearInterval(interval)
+      if(!isInvertal){
+        clearInterval(interval)
+        isInvertal = true
+      }
     }
     resetTime = ()=>{
       this.setState({
@@ -46,6 +47,7 @@ class Timer extends React.Component{
         hour : 0
       })
       clearInterval(interval)
+      isInvertal = true
     }
     
     render(){
@@ -59,6 +61,7 @@ class Timer extends React.Component{
         </h2>
         
         <TimeInput start = {this.startTime} stop = {this.stopTime} reset = {this.resetTime}/>
+        
         </>
       )
     }
