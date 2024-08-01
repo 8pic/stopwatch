@@ -61,7 +61,7 @@ class Timer extends React.Component{
       // let s = this.state.second;
       if(!isInvertal){
         // let newTime = `${h < 10 ? "0" + h : h}:${m < 10 ? "0" + m : m}:${s < 10 ? "0" + s : s}`
-        const newTime = document.querySelector(".timer").innerHTM
+        const newTime = document.querySelector(".timer").innerHTML
       this.context.setTimeArr([...this.context.timeArr , newTime])
       }
     }
