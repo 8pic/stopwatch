@@ -1,5 +1,6 @@
 import React from 'react';
 import TimeInput from './TimeInput';
+import { testContext } from './testcontext';
 var interval;
 var isInvertal = true;
 class Timer extends React.Component{
@@ -11,6 +12,10 @@ class Timer extends React.Component{
         hour : 0
       }
     }
+
+    static contextType = testContext ;
+
+
     startTime = ()=>{
       if (isInvertal){
         interval = setInterval(()=>{
@@ -50,18 +55,36 @@ class Timer extends React.Component{
       isInvertal = true
     }
     
+    handleSaveTime = ()=>{
+      // let h = this.state.hour;
+      // let m = this.state.minute;
+      // let s = this.state.second;
+      if(!isInvertal){
+        // let newTime = `${h < 10 ? "0" + h : h}:${m < 10 ? "0" + m : m}:${s < 10 ? "0" + s : s}`
+        const newTime = document.querySelector(".timer").innerHTM
+      this.context.setTimeArr([...this.context.timeArr , newTime])
+      }
+    }
+
+
+
+
+
+
+
+
+
+
     render(){
       let h = this.state.hour;
       let m = this.state.minute;
       let s = this.state.second;
       return(
         <>
-        <h2 className='timer'>
+        <h2 className='timer' onClick={this.handleSaveTime}>
           {`${h < 10 ? "0" + h : h}:${m < 10 ? "0" + m : m}:${s < 10 ? "0" + s : s}`}
         </h2>
-        
         <TimeInput start = {this.startTime} stop = {this.stopTime} reset = {this.resetTime}/>
-        
         </>
       )
     }

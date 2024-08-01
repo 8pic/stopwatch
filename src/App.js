@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import "./style.css"
 import Timer from './timer';
+import { testContext } from './testcontext';
+import TimeList from './TimeArr';
 
 
 
@@ -28,7 +30,8 @@ import Timer from './timer';
 
 
 const App = ()=>{
-  const[isLight , setIsLight] = useState(false)
+  const[isLight , setIsLight] = useState(false);
+  const[timeArr , setTimeArr] = useState([]);
 
 
   useEffect(()=>{
@@ -44,10 +47,19 @@ const App = ()=>{
 
 
   return(
+    <testContext.Provider value={
+      {
+        timeArr : timeArr,
+        setTimeArr : setTimeArr
+      }
+    }>
         <div className='main' style={{background:isLight ? "white" : "black"}}>
              <Timer/>
              <button className='submit-time' style={{color : isLight ? "black" : "white" , borderColor: isLight ? "black" : "white" }} onClick={handelSetIsLight}>change</button>
+             <TimeList/>
          </div>
+         
+    </testContext.Provider>
   )
 }
 

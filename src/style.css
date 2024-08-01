@@ -1,13 +1,19 @@
+*{
+    box-sizing: border-box;
+}
 body{
     margin: 0;
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(0, 0, 0);
+    
 }
 .main{
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -15,6 +21,7 @@ body{
     flex-direction: column;
     background-color: black;
     transition: all ease 1s;
+    
 }
 .timer{
     width: 200px;
@@ -90,4 +97,24 @@ body{
 .hello{
     color: white;
     font-family: sans-serif;
+}
+.main-time-list{
+    color: white;
+    margin: 30px;
+    padding: 10px;
+    background: rgb(10, 10, 10);
+    border-radius: 10px;
+    width: 200px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 90px;
+}
+.time-list-item{
+    padding: 5px;
+}
+.time-list-item:hover{
+    text-shadow: 0 0 5px rgb(255, 255, 255);
 }
